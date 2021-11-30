@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('/login');
-});
-
+// Route::get('/', function () {
+//     return view('frontend.home');
+// });
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
