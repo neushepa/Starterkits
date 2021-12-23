@@ -93,7 +93,7 @@
               </div><!-- End sidebar search formn-->
 
               <!-- start sidebar categories-->
-              <x-category-post />
+              {{-- <x-category-post /> --}}
 
               <!-- End sidebar categories-->
 
