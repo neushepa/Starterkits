@@ -61,7 +61,7 @@
                 </div>
                 <div class="row sm-gutters">
                   <div class="col-6">
-                    <a class="btn btn-block btn-social btn-google">
+                    <a href="{{ '/auth/redirect'}}" class="btn btn-block btn-social btn-google">
                       <span class="fab fa-google"></span> Google
                     </a>
                   </div>

@@ -46,6 +46,7 @@
   <!-- JS Libraies -->
   <!-- include summernote css/js -->
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
   <!-- Template JS File -->
   <script src="{{ asset ('assets/admin/js/scripts.js') }}"></script>

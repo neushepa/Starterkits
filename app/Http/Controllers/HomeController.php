@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
+
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -21,12 +20,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-
-     public function index()
+    public function index()
     {
         $data=[
             'users'=>User::count()
+            // 'categories'=>Category::count(),
+            // 'articles'=>Post::count(),
+            // 'photo'=>Auth::user()->photo,
         ];
-        return view('admin.dashboard',$data);
+        return view('admin.dashboard', $data);
     }
+
 }

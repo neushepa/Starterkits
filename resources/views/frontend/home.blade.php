@@ -1,4 +1,4 @@
-@extends('layouts.frontend.app')
+@extends('layouts.frontend.main')
 
 @section('content')
 <!-- ======= Hero Section ======= -->
@@ -8,7 +8,7 @@
         <!-- Slide 1 -->
         <div class="carousel-item active">
             <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Moderna</span></h2>
+                <h2 class="animate__animated animate__fadeInDown">FATFORCE<span> STARTERKITS PRO </span></h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi
                     ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea
                     voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.

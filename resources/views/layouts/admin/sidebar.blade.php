@@ -1,7 +1,7 @@
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="/dashboard">FATHFORCE</a>
+            <a href="{{ route('home') }}">FATHFORCE</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">FFSK</a>
@@ -11,18 +11,18 @@
                 <i class="fas fa-rocket"></i> Dashboard
             </a>
                 <ul class="sidebar-menu">
-                    <li><a class="nav-link" href="/todo"><i class="fas fa-calendar"></i> <span>To Do</span></a></li>
+                    <li><a class="nav-link" href="{{ route('todo.index') }}"><i class="fas fa-calendar"></i> <span>To Do</span></a></li>
                     <li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Article</span></a>
                             <ul class="dropdown-menu" style="display: none;">
-                                <li class="active"><a class="nav-link" href="/post">Post</a></li>
-                                <li class="active"><a class="nav-link" href="/category">Category</a></li>
+                                <li class="active"><a class="nav-link" href="{{ route('post.index') }}">Post</a></li>
+                                <li class="active"><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
                             </ul>
                             </li>
                     </li>
-                    <li><a class="nav-link" href="/gallery"><i class="fas fa-image"></i> <span>Gallery</span></a></li>
-                    <li><a class="nav-link" href="/user"><i class="fas fa-user"></i> <span>Manage User</span></a></li>
+                    <li><a class="nav-link" href="{{ route('gallery.index') }}"><i class="fas fa-image"></i> <span>Gallery</span></a></li>
+                    <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-user"></i> <span>Manage User</span></a></li>
                     <li>
                             <li class="dropdown active">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Settings</span></a>
