@@ -20,7 +20,7 @@ class CreateTodosTable extends Migration
             $table->unsignedInteger('assigned_to')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('status')->default(false);
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }

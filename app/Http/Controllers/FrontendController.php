@@ -21,13 +21,17 @@ class FrontendController extends Controller
         return view('frontend.gallery', $data);
     }
 
-    public function showfeatured()
+    public function showslider()
     {
         $data = [
             'title' => 'Post Detail',
             'posts' => Post::all(),
         ];
-        //dd($data);
         return view('frontend.home', $data);
+    }
+
+    public function showAbout()
+    {
+        return view('frontend.about');
     }
 }

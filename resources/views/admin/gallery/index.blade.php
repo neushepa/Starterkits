@@ -1,6 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('content')
+
 <div class="main-content" style="min-height: 555px;">
     <section class="section">
         <div class="section-header">
@@ -59,7 +60,7 @@
                                                 {{ $gallery->created_at }}
                                             </td>
                                             <td><form method="POST" action="{{ route('gallery.destroy', $gallery) }}">
-                                                <a class="btn btn-primary btn-flat show_confirm" data-toggle="tooltip" title='Edit' href="{{ route('gallery.edit',$gallery) }}"><i class="fas fa-pencil-alt"></i></a>
+                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title='Edit' href="{{ route('gallery.edit',$gallery) }}"><i class="fas fa-pencil-alt"></i></a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>

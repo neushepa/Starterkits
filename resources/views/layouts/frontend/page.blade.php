@@ -24,8 +24,12 @@
   <link href="../assets/frontend/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 
+
   <!-- Template Main CSS File -->
   <link href="../assets/frontend/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/frontend/magnific-popup/magnific-popup.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="magnific-popup/jquery.magnific-popup.js"></script>
 
   <!-- =======================================================
   * Template Name: Moderna - v4.8.0
@@ -61,10 +65,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Blog</h2>
+          <h2></h2>
           <ol>
             <li><a href="/">Home</a></li>
-            <li>Blog</li>
+            <li>Page</li>
           </ol>
         </div>
       </div>
@@ -103,11 +107,23 @@
   <script src="../assets/frontend/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/frontend/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="../assets/frontend/vendor/php-email-form/validate.js"></script>
-
+  <script src="../assets/frontend/magnific-popup/jquery.magnific-popup.min.js?v=1"></script>
   <!-- Template Main JS File -->
   <script src="../assets/frontend/js/main.js"></script>
 
-  <script>if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } </script>
 
+  {{-- <script>if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } </script> --}}
+  <script>
+        $(document).ready(function() {
+        $('.popup-image').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            }
+            });
+        });
+</script>
 
 </body></html>

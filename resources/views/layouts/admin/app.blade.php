@@ -51,12 +51,13 @@
   <!-- Template JS File -->
   <script src="{{ asset ('assets/admin/js/scripts.js') }}"></script>
   <script src="{{ asset ('assets/admin/js/custom.js') }}"></script>
+  <script src="{{ asset ('assets/admin/js/page/bootstrap-modal.js') }}"></script>
 
   <!-- Datatables -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 
   <!-- Page Specific JS File -->
-
+  @include('sweetalert::alert')
   @yield('script')
 </body>
 </html>

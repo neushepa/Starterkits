@@ -7,7 +7,7 @@
             <div class="section-header-back">
                 <a href="{{ url()->previous() }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Picture</h1>
+            <h1>Back</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">{{ $title }}s</a></div>
@@ -51,7 +51,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                     <div class="col-sm-12 col-md-7">

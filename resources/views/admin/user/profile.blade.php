@@ -109,10 +109,6 @@ $url = Route::current()->getName();
                                             <option>Male</option>
                                             <option>Female</option>
                                         </select>
-
-
-
-
                                     </div>
                                     <div class="form-group col-md-5 col-12">
                                         <label>Religion</label>

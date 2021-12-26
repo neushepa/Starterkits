@@ -54,7 +54,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->role = 'student';
+        $user->role = 'guest';
         $user->save();
 
         return redirect()->route('user.index')->with('success', 'User has been created');
@@ -147,5 +147,13 @@ class UserController extends Controller
         $destroy =User::where('id', $id);
         $destroy->delete();
         return redirect(route('user.index'));
+    }
+
+    public function resetpass($id)
+    {
+        $people = User::find($id);
+        $people->password = bcrypt('123456');
+        $people->save();
+        return redirect()->route('user.index')->withSuccess('Password Successfully');
     }
 }

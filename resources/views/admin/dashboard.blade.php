@@ -17,7 +17,7 @@
                     <h4>Article</h4>
                   </div>
                   <div class="card-body">
-                    27
+                    {{ $article }}
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                     <h4>Category</h4>
                   </div>
                   <div class="card-body">
-                  3
+                    {{ $category }}
                   </div>
                 </div>
               </div>
@@ -54,6 +54,28 @@
             </div>
           </div>
         </section>
+        <div class="card">
+            <div class="card-header">
+              <h4 class="d-inline">Task</h4>
+              <div class="card-header-action">
+                <a href="#" class="btn btn-primary">View All</a>
+              </div>
+            </div>
+            @foreach ($todos as $td)
+            <div class="card-body">
+                <ul class="list-unstyled list-unstyled-border">
+                  <li class="media">
+                    <img class="mr-3 rounded-circle" width="50" src="../{{ $td->member->photo }}" alt="avatar">
+                    <div class="media-body">
+                      <div class="float-right"><a href="{{ route('todo.status', ['id' => $td->id]) }}">{!! $td->status_text !!}</div>
+                      <h6 class="media-title"><a href="#">{{ $td->todo }}</a></h6>
+                      <div class="text-small text-muted"><a href="{{ route('profile.show',$td->member->id) }}">{{ $td->member->name }}</a></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            @endforeach
+          </div>
       </div>
       <!-- Main Content -->
 @endsection

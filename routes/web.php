@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
@@ -24,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 // Start of the Public Routes
 
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/', [FrontendController::class, 'showfeatured']);
+Route::get('/', [FrontendController::class, 'showslider']);
+Route::get('/about', [FrontendController::class, 'showAbout']);
 Route::get('/gallery', FrontendController::class . '@showgallery')->name('gallery.show'); ;
 
 Route::get('/blog', BlogController::class . '@index')->name('blog.index');
@@ -49,6 +52,8 @@ Route::get('/home', function () {
 // Start of the Admin Routes
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/changePassword', [App\Http\Controllers\HomeController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [App\Http\Controllers\HomeController::class, 'changePasswordPost'])->name('changePasswordPost');
     Route::prefix('admin')->group(function () {
         Route::prefix('post')->group(function () {
             Route::get('/', [PostController::class, 'index'])->name('post.index');
@@ -81,6 +86,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
             Route::put('/update/{id}', [UserController::class, 'update'])->name('profile.update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+            Route::get('/resetpass/{id}', [UserController::class, 'resetpass'])->name('user.resetpass');
         });
         Route::prefix('todo')->group(function () {
             Route::get('/', [TodoController::class, 'index'])->name('todo.index');
@@ -89,6 +95,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/edit/{id}', [TodoController::class, 'edit'])->name('todo.edit');
             Route::put('/update/{id}', [TodoController::class, 'update'])->name('todo.update');
             Route::delete('/delete/{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
+            Route::get('/status/{id}', [TodoController::class, 'status'])->name('todo.status');
+        });
+
+        Route::prefix('album')->group(function () {
+            Route::get('/', [AlbumController::class, 'index'])->name('album.index');
+            Route::get('/create', [AlbumController::class, 'create'])->name('album.create');
+            Route::post('/store', [AlbumController::class, 'store'])->name('album.store');
+            Route::get('/edit/{id}', [AlbumController::class, 'edit'])->name('album.edit');
+            Route::put('/update/{id}', [AlbumController::class, 'update'])->name('album.update');
+            Route::delete('/delete/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+        });
+
+        Route::prefix('about')->group(function () {
+            Route::get('/credit', [AboutController::class, 'showCredit'])->name('about.credit');
+            Route::get('/support', [AboutController::class, 'showSupport'])->name('about.support');
         });
     });
 });

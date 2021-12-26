@@ -1,29 +1,24 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Album;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class AlbumController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = [
-            'title' => 'Blog List',
-            'posts' => Post::orderBy('created_at', 'desc')->paginate(5),
-            'categories' => Category::all()
+        $data=[
+            'title'=>'List Album',
+            'albums'=> Album::all(),
+            'route' => route('album.create'),
         ];
-        if ($request->has('q')) {
-            $data['posts'] = Post::where('title', 'like', '%'.$request->q.'%')->orderBy('created_at', 'desc')->paginate(5);
-        }
-
-        return view('frontend.blog', $data);
+        return view('admin.album.index', $data);
     }
 
     /**
@@ -33,7 +28,11 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $data=[
+            'method'=>'POST',
+            'route' => route('album.store'),
+        ];
+        return view('admin.album.editor', $data);
     }
 
     /**
@@ -44,7 +43,11 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $album = new Album();
+        $album->album_name = $request->album_name;
+        $album->album_description = $request->album_description;
+        $album->save();
+        return redirect()->route('album.index');
     }
 
     /**
@@ -53,23 +56,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $data = [
-            'title' => 'Detail Post',
-            'post' => Post::where('slug', $slug)->firstOrFail()
-        ];
-        //dd($data);
-        return view('frontend.post', $data);
-    }
-
-    public function showcat($id)
-    {
-        $data = [
-            'title' => 'Detail Post',
-            'posts' => Post::select('*')->where('category_id', '=', $id)->get(),
-        ];
-        return view('frontend.blog', $data);
+        //
     }
 
     /**
@@ -80,7 +69,13 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Edit Album',
+            'method' => 'PUT',
+            'route' => route('album.update', $id),
+            'albums' => Album::where('id', $id)->first(),
+        ];
+        return view('admin.album.editor', $data);
     }
 
     /**
@@ -92,7 +87,11 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $album = Album::find($id);
+        $album->album_name = $request->album_name;
+        $album->album_description = $request->album_description;
+        $album->update();
+        return redirect()->route('album.index');
     }
 
     /**
@@ -103,6 +102,8 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroy =Album::where('id', $id);
+        $destroy->delete();
+        return redirect(route('album.index'));
     }
 }

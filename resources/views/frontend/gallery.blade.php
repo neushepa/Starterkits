@@ -8,22 +8,24 @@
         <div class="col-lg-12">
           <ul id="portfolio-flters">
             @foreach ($albums as $album)
-                <li data-filter=".filter-app {{ $album->album_name }}" class="">{{ $album->album_name }}</li>
+                {{-- <li data-filter=".filter-app {{ $album->album_name }}" class="">{{ $album->album_name }}</li> --}}
             @endforeach
           </ul>
         </div>
       </div>
 
-      <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="position: relative; height: 3753px;">
+      <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="position: relative; height: 3753px; wow zoomIn">
         @foreach($galleries as $gallery)
-            <div class="col-lg-4 col-md-6 portfolio-wrap filter-app {{ $album->album_name }}" style="position: absolute; left: 0px; top: 0px;">
+            <div class="col-lg-4 col-md-6 portfolio-wrap {{ $album->album_name }}" style="position: absolute; left: 0px; top: 0px;">
                 <div class="portfolio-item">
-                    <img src="{{ asset('assets/gallery/'.$gallery->picture) }}" class="img-fluid" alt="">
+                    <a class="popup-image" href="{{ asset('assets/gallery/'.$gallery->picture) }} ">
+                        <img src="{{ asset('assets/gallery/'.$gallery->picture) }}" title="{{ $gallery->description }}" class="w-100">
+                    </a>
                     <div class="portfolio-info">
                         <h4>{{ $gallery->album->album_name }}</h4>
                         <p>{{ $gallery->description }}</p>
                         <div class="portfolio-links">
-                            <a href="" data-gall="portfolioGallery" class="venobox" title="{{ $album->album_name }}"><i class="bx bx-plus"></i></a>
+                            <a class="popup-image" href="{{ asset('assets/gallery/'.$gallery->picture) }} "><i class="bx bx-plus"></i></a>
                         </div>
                     </div>
                 </div>

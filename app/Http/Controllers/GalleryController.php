@@ -56,7 +56,7 @@ class GalleryController extends Controller
 //        dd($request);
         Gallery::create($validate);
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('gallery.index')->withSuccess('Success add galery');
     }
 
     /**
@@ -81,9 +81,9 @@ class GalleryController extends Controller
         $title = 'Edit Picture';
         $method = 'PUT';
         $gallery = Gallery::where('id', $id)->first();
-        $album_ct = album::all();
+        $albums = album::All();
         $route = route('gallery.update', $gallery);
-        return view('admin.gallery.editor', compact('title', 'method', 'route', 'gallery'));
+        return view('admin.gallery.editor', compact('title', 'method', 'route', 'gallery', 'albums'));
     }
 
     /**
@@ -97,6 +97,7 @@ class GalleryController extends Controller
     {
         $galleries = Gallery::find($id);
         $validate = $request->validate([
+            'album_id' => 'required',
             'title' => 'required',
             'description' => 'required',
             'picture' => 'sometimes|image'
@@ -123,11 +124,6 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $destroy = Gallery::where('id', $id);
-        $destroy->delete();
-
-        // if (file_exists(public_path('assets/gallery/'.$destroy->picture))) {
-        //     unlink(public_path('assets/gallery/'.$destroy->picture));
-        // }
         $destroy->delete();
         return back();
     }

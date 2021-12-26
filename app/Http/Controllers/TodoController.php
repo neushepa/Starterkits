@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TodoController extends Controller
 {
@@ -14,11 +15,19 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $data= [
-            'title' => 'List Todo',
-            'todo'  => Todo::get(),
-            'route' => route('todo.create'),
-        ];
+        if ((auth()->user()->role == 'admin') && (auth()->user()->email == 'admin@test.com')) {
+            $data = [
+                'title' => 'List Todo',
+                'todo'  => Todo::All(),
+                'route' => route('todo.create'),
+            ];
+        } else {
+            $data = [
+                'title' => 'List Todo',
+                'todo'  => Todo::where('assigned_to', auth()->user()->id)->get(),
+                'route' => route('todo.create'),
+            ];
+        }
         return view('admin.todo.index', $data);
     }
 
@@ -36,7 +45,9 @@ class TodoController extends Controller
             'route' => route('todo.store'),
             'users' => User::All(),
         ];
+        //Alert::success('Congrats', 'You\'ve Successfully Registered');
         return view('admin.todo.editor', $data);
+        ;
     }
 
     /**
@@ -51,11 +62,11 @@ class TodoController extends Controller
         $user_id = auth()->user()->id;
         $td->user_id = $user_id;
         $td->todo = $request->todo;
-        $td->assigned_to = $request->assignto;
+        $td->assigned_to = $request->assigned_to;
         $td->start_date = $request->start;
         $td->end_date = $request->end;
         $td->save();
-        return redirect()->route('todo.index');
+        return redirect(route('todo.index'))->with('success', 'Task Created Successfully!');
     }
 
     /**
@@ -82,6 +93,7 @@ class TodoController extends Controller
             'method' => 'PUT',
             'route' => route('todo.update', $id),
             'td' => Todo::where('id', $id)->first(),
+            'users' => User::All(),
             'todo' => Todo::get(),
         ];
         return view('admin.todo.editor', $data);
@@ -100,11 +112,11 @@ class TodoController extends Controller
         $user_id = auth()->user()->id;
         $td->user_id = $user_id;
         $td->todo = $request->todo;
-        $td->assigned_to = $request->assignto;
+        $td->assigned_to = $request->assigned_to;
         $td->start_date = $request->start;
         $td->end_date = $request->end;
         $td->update();
-        return redirect()->route('todo.index');
+        return redirect()->route('todo.index')->withSuccess('Task Updated Successfully!');
     }
 
     /**
@@ -117,6 +129,14 @@ class TodoController extends Controller
     {
         $destroy = Todo::where('id', $id);
         $destroy->delete();
-        return redirect(route('todo.index'));
+        return redirect(route('todo.index'))->withSuccess('Task Deleted Successfully');
+    }
+
+    public function status($id)
+    {
+        $td = Todo::find($id);
+        $td->status = ($td->status == 0) ? 1 : 2;
+        $td->save();
+        return redirect()->route('todo.index')->withSuccess('Task Status Update Successfully');
     }
 }

@@ -7,9 +7,9 @@ $url = Route::current()->getName();
         <section class="section">
           <div class="section-header">
             <div class="section-header-back">
-              <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+              <a href="{{  route('todo.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Create New Todo</h1>
+            <h1>Back</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
               <div class="breadcrumb-item"><a href="#">Todo</a></div>
@@ -37,6 +37,17 @@ $url = Route::current()->getName();
                       <div class="col-sm-12 col-md-7">
                         <input type="text" name="todo" class="form-control" value="{{ str_contains($url, 'edit') ? $td->todo : '' }}">
                       </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Assigned to</label>
+                        <div class="col-sm-12 col-md-7">
+                            <select name="assigned_to" id="assigned_to" class="form-control" required autofocus>
+                                <option value="">Select User</option>
+                                @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ old('user', $td->assigned_to??'')==$user->id?'selected':'' }}>{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group row mb-4">
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Start Date</label>

@@ -201,8 +201,8 @@
               <a href="{{ route('user.edit', Auth::user()->id) }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="/support" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Support
+              <a href="{{ route('changePasswordGet') }}" class="dropdown-item has-icon">
+                <i class="fas fa-cog"></i> Change Password
               </a>
               <div class="dropdown-divider"></div>
               <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item has-icon text-danger">
