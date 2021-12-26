@@ -10,18 +10,18 @@
         <div class="col-lg-6 pt-4 pt-lg-0">
           <h3>Fathforce Starter Kits Pro</h3>
           <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            A web-based application with the Laravel 8 Framework that can be integrated with various android/ios mobile platforms. Fathforce Starter Kit aims to help companies, campuses, schools, students, freelancers, and the general public in building applications more effectively and efficiently.
           </p>
           <ul>
-            <li><i class="bi bi-check2-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bi bi-check2-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bi bi-check2-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            <li><i class="bi bi-check2-circle"></i> Basic Blog CRUD</li>
+            <li><i class="bi bi-check2-circle"></i> Gallery</li>
+            <li><i class="bi bi-check2-circle"></i> Todo List</li>
+            <li><i class="bi bi-check2-circle"></i> User Managemet</li>
+            <li><i class="bi bi-check2-circle"></i> Open Source</li>
+
           </ul>
           <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
+            Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.
           </p>
         </div>
       </div>

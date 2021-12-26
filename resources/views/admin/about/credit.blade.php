@@ -46,7 +46,8 @@
                           <h6>Collaborator</a></h6>
                           <p>
                             - <a href="#" target="_blank">Afza Sorfina</a><br>
-                            - <a href="#" target="_blank">Nuria Sisma Putri</a>
+                            - <a href="#" target="_blank">Nuria Sisma Putri</a><br>
+                            - <a href="https://github.com/Ichaputriadestiani" target="_blank">Icha Putri Adestiani</a>
                            </p>
                         </div>
                     </div>
