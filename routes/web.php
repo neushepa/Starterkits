@@ -93,6 +93,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
             Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
             Route::get('/edit/{id}', [TodoController::class, 'edit'])->name('todo.edit');
+            Route::get('/show/{id}', [TodoController::class, 'show'])->name('todo.show');
             Route::put('/update/{id}', [TodoController::class, 'update'])->name('todo.update');
             Route::delete('/delete/{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
             Route::get('/status/{id}', [TodoController::class, 'status'])->name('todo.status');

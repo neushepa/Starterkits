@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\TodoStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -41,9 +42,9 @@ class TodoController extends Controller
         $data = [
             'title' => 'New Todo',
             'method' => 'POST',
-            'categories' => todo::All(),
             'route' => route('todo.store'),
             'users' => User::All(),
+            'tdstatuses' => TodoStatus::All(),
         ];
         //Alert::success('Congrats', 'You\'ve Successfully Registered');
         return view('admin.todo.editor', $data);
@@ -62,9 +63,11 @@ class TodoController extends Controller
         $user_id = auth()->user()->id;
         $td->user_id = $user_id;
         $td->todo = $request->todo;
+        $td->description = $request->description;
         $td->assigned_to = $request->assigned_to;
         $td->start_date = $request->start;
         $td->end_date = $request->end;
+        $td->status = $request->status;
         $td->save();
         return redirect(route('todo.index'))->with('success', 'Task Created Successfully!');
     }
@@ -77,7 +80,11 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $todos = Todo::find($id);
+
+        return response()->json([
+            'data' => $todos,
+        ]);
     }
 
     /**
@@ -95,6 +102,7 @@ class TodoController extends Controller
             'td' => Todo::where('id', $id)->first(),
             'users' => User::All(),
             'todo' => Todo::get(),
+            'tdstatuses' => TodoStatus::All(),
         ];
         return view('admin.todo.editor', $data);
     }
@@ -112,9 +120,11 @@ class TodoController extends Controller
         $user_id = auth()->user()->id;
         $td->user_id = $user_id;
         $td->todo = $request->todo;
+        $td->description = $request->description;
         $td->assigned_to = $request->assigned_to;
         $td->start_date = $request->start;
         $td->end_date = $request->end;
+        $td->status = $request->status;
         $td->update();
         return redirect()->route('todo.index')->withSuccess('Task Updated Successfully!');
     }
@@ -135,7 +145,7 @@ class TodoController extends Controller
     public function status($id)
     {
         $td = Todo::find($id);
-        $td->status = ($td->status == 0) ? 1 : 2;
+        $td->status = ($td->status == 1) ? 2 : 3;
         $td->save();
         return redirect()->route('todo.index')->withSuccess('Task Status Update Successfully');
     }

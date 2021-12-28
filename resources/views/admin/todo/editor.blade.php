@@ -39,6 +39,12 @@ $url = Route::current()->getName();
                       </div>
                     </div>
                     <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
+                        <div class="col-sm-12 col-md-7">
+                            <textarea class="summernote" name="description">{{ old('body', $td->description??'') }}</textarea>
+                        </div>
+                      </div>
+                    <div class="form-group row mb-4">
                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Assigned to</label>
                         <div class="col-sm-12 col-md-7">
                             <select name="assigned_to" id="assigned_to" class="form-control" required autofocus>
@@ -60,6 +66,17 @@ $url = Route::current()->getName();
                       <div class="col-sm-12 col-md-7">
                         <input placeholder="Select date" type="date" id="end" class="form-control" name="end" value="{{ str_contains($url, 'edit') ? $td->start_date : '' }}">
                       </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                        <div class="col-sm-12 col-md-7">
+                            <select name="status" id="status" class="form-control" required autofocus>
+                                <option value="">Status</option>
+                                @foreach($tdstatuses as $st)
+                                <option value="{{ $st->id }}" {{ old('status_', $td->status??'')==$st->id?'selected':'' }}>{{ $st->status_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group row mb-4">
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

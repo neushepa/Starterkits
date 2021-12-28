@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodosTable extends Migration
+class CreateTodoStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateTodosTable extends Migration
      */
     public function up()
     {
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('todo_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('todo');
-            $table->unsignedInteger('assigned_to')->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->tinyInteger('status')->default('1');
+            $table->string('status_name');
+            $table->string('status_description')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateTodosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('todo_statuses');
     }
 }

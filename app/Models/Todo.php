@@ -21,9 +21,9 @@ class Todo extends Model
 
     public function getStatusTextAttribute()
     {
-        if ($this->status == 0) {
+        if ($this->status == 1) {
             return '<span class="badge badge-primary">Todo</span>';
-        } elseif ($this->status == 1) {
+        } elseif ($this->status == 2) {
             return '<span class="badge badge-warning">In Progress</span>';
         } else {
             return '<span class="badge badge-success">Completed</span>';

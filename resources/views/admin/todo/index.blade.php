@@ -38,10 +38,11 @@
                                 <th>#</th>
                                 <th>Todo</th>
                                 <th>Assigned To</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Created date</th>
-                                <th>Created By</th>
+                                {{-- <th>Start Date</th> --}}
+                                {{-- <th>End Date</th> --}}
+                                <th>Created</th>
+                                <th>Last Update</th>
+                                {{-- <th>Created By</th> --}}
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -54,18 +55,21 @@
                                 <td>{{ $i }}</td>
                                 <td>{{ $td->todo }}</td>
                                 <td>{{ $td->member->name }}</td>
-                                <td>{{ $td->start_date }}</td>
-                                <td>{{ $td->end_date }}</td>
+                                {{-- <td>{{ $td->start_date }}</td> --}}
+                                {{-- <td>{{ $td->end_date }}</td> --}}
                                 <td>{{ $td->created_at }}</td>
-                                <td>{{ $td->user->name }}</td>
+                                <td>{{ $td->updated_at }}</td>
+                                {{-- <td>{{ $td->user->name }}</td> --}}
                                 <td><a href="{{ route('todo.status', ['id' => $td->id]) }}">{!! $td->status_text !!}</a></td>
-
-                                <td><form method="POST" name ="del" action="{{ route('todo.destroy',$td->id) }}">
-                                    <a class="btn btn-primary btn-flat" data-toggle="tooltip" title='Edit' href="{{ route('todo.edit',$td->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
-                                    </form></td>
+                                <td align="center">
+                                    <form method="POST" name ="del" action="{{ route('todo.destroy',$td->id) }}">
+                                        <a class="btn btn-icon btn-info" href="" id="detailtodo" data-toggle="modal" data-target="#myModal" data-id={{  $td->id  }} title='Detail'><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-icon btn-warning" data-toggle="tooltip" title='Edit' href="{{ route('todo.edit',$td->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-icon btn-danger show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -78,6 +82,42 @@
           </div>
         </section>
       </div>
+
+{{-- Start Detail Todo --}}
+      <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <input type="hidden" id="id" name="id" value="">
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Task Todo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">Task</label>
+                <input type="text" name="todo" id="todo" value="" class="form-control" disabled>
+                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">Description</label>
+                <textarea class="form-control" name="description" id="description" value="" class="form-control" disabled></textarea>
+                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">Start Date</label>
+                <input type="text" name="start_date" id="start_date" value="" class="form-control" disabled>
+                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">End Date</label>
+                <input type="text" name="end_date" id="end_date" value="" class="form-control" disabled>
+                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">Last Update</label>
+                <input type="text" name="updated_at" id="updated_at" value="" class="form-control" disabled>
+                {{-- <textarea class="summernote" name="description">{{ old('body', $td->description??'') }}</textarea> --}}
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{{-- End Detail Todo --}}
+
+
+
 @endsection
 @section('script')
     <script>
@@ -105,4 +145,32 @@
      });
 
 </script>
+<script>
+
+    $(document).ready(function () {
+
+    $('body').on('click', '#detailtodo', function (event) {
+
+        event.preventDefault();
+        var id = $(this).data('id');
+        $.get('/admin/todo/show/'+id+'', function (data) {
+            //  $('#userCrudModal').html("Edit category");
+            //  $('#submit').val("Edit category");
+             $('#myModal').modal('show');
+             $('#id').val(data.data.id);
+             $('#todo').val(data.data.todo);
+             $('#description').val(data.data.description);
+             $('#start_date').val(data.data.start_date);
+             $('#end_date').val(data.data.end_date);
+             $('#updated_at').val(data.data.updated_at);
+
+
+
+
+
+         })
+    });
+
+    });
+    </script>
 @endsection

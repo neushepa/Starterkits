@@ -119,5 +119,28 @@ class DatabaseSeeder extends Seeder
                 ]
             ]
         );
+
+        \App\Models\TodoStatus::insert(
+            [
+                [
+                    'id' => '1',
+                    'status_name' => 'Todo',
+                    'status_description' => 'New Task',
+                    'created_at' => now(),
+                ],
+                [
+                    'id' => '2',
+                    'status_name' => 'On Progress',
+                    'status_description' => 'Task on Progress',
+                    'created_at' => now(),
+                ],
+                [
+                    'id' => '3',
+                    'status_name' => 'Completed',
+                    'status_description' => 'Task Completed',
+                    'created_at' => now(),
+                ],
+            ]
+        );
     }
 }

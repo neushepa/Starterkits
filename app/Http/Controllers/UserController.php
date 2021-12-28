@@ -132,6 +132,7 @@ class UserController extends Controller
             $pro->photo = $location;
         }
 
+        //dd($request);
         $pro->save();
         return redirect()->route('user.edit', $id)->with('success', 'Profile Updated');
     }
