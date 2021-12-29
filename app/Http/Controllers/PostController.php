@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostStatus;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,6 +26,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -34,6 +36,7 @@ class PostController extends Controller
             'method' => 'POST',
             'categories' => category::All(),
             'route' => route('post.store'),
+            'poststatuses'=> PostStatus::All(),
         ];
         return view('admin.post.editor', $data);
     }
@@ -46,16 +49,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:posts',
+            'body' => 'required',
+        ]);
+
         $post = new Post;
         $user_id = auth()->user()->id;
         $last = '1';
 
-        $file = $request->file('banner');
-        $banner = 'banner-'.uniqid().'.'.$file->getClientOriginalExtension();
-        $file->move('images/banners/', $banner);
+        if ($request->hasFile('banner')) {
+            $file = $request->file('banner');
+            $banner = 'banner-'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move('images/banners/', $banner);
+            $post->banner = $banner;
+        } else {
+            $post->banner = 'default.jpg';
+        }
 
         $post->user_id = $user_id;
-        $post->banner = $banner;
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category;
@@ -63,7 +76,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->updated_by = $user_id;
         $post->save();
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with('success', 'Post has been created');
     }
 
     /**
@@ -96,6 +109,7 @@ class PostController extends Controller
             'route' => route('post.update', $id),
             'post' => Post::where('id', $id)->first(),
             'categories' => Category::get(),
+            'poststatuses'=> PostStatus::All(),
         ];
         return view('admin.post.editor', $data);
     }
@@ -109,6 +123,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         $post = Post::find($id);
         $user_id = auth()->user()->id;
 
@@ -126,6 +145,7 @@ class PostController extends Controller
         $post->category_id = $request->category;
         $post->excerpt = $request->excerpt;
         $post->body = $request->body;
+        $post->is_publish = $request->status;
         $post->updated_by = auth()->user()->id;
         $post->update();
         return redirect()->route('post.index');
@@ -143,5 +163,13 @@ class PostController extends Controller
         $destroy->delete();
         // return redirect(route("post.index"));
         return back()->with('success', 'Post deleted successfully');
+    }
+
+    public function status($id)
+    {
+        $post = Post::find($id);
+        $post->is_publish = $post->is_publish == 1 ? 2 : 1;
+        $post->save();
+        return redirect()->route('post.index')->withSuccess('Post Status Update Successfully');
     }
 }

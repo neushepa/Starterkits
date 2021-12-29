@@ -62,6 +62,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
             Route::put('/update/{id}', [PostController::class, 'update'])->name('post.update');
             Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+            Route::get('/status/{id}', [PostController::class, 'status'])->name('post.status');
         });
         Route::prefix('category')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('category.index');

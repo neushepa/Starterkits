@@ -7,7 +7,7 @@ use Laravelista\Comments\Commentable;
 
 class Post extends Model
 {
-    use HasFactory, Commentable ;
+    use HasFactory, Commentable;
 
     public function user()
     {
@@ -22,5 +22,18 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getStatusTextAttribute()
+    {
+        if ($this->is_publish == 1) {
+            return '<span class="badge badge-success">Publish</span>';
+        } elseif ($this->is_publish == 2) {
+            return '<span class="badge badge-primary">Draft</span>';
+        } elseif ($this->is_publish == 3) {
+            return '<span class="badge badge-warning">Pending</span>';
+        } else {
+            return '<span class="badge badge-danger">Rejected</span>';
+        }
     }
 }

@@ -36,12 +36,13 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
-                                <th>Slug</th>
+                                {{-- <th>Slug</th> --}}
                                 <th>Category</th>
                                 <th>Date</th>
                                 <th>Created By</th>
                                 <th>Last Update By</th>
-                                <th colspan='2'>Action</th>
+                                <td>Status</td>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,11 +52,12 @@
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $ps->title }}</td>
-                                <td>{{ $ps->slug }}</td>
+                                {{-- <td>{{ $ps->slug }}</td> --}}
                                 <td>{{ $ps->category->category_name }}</td>
                                 <td>{{ $ps->created_at }}</td>
                                 <td>{{ $ps->user->name }}</td>
                                 <td>{{ $ps->last_update->name }}</td>
+                                <td><a href="{{ route('post.status', ['id' => $ps->id]) }}">{!! $ps->status_text !!}</td>
                                 <td><form method="POST" action="{{ route('post.destroy',$ps->id) }}">
                                     <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Edit' href="{{ route('post.edit',$ps->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                         @csrf

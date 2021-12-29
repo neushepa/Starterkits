@@ -36,7 +36,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Banner</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="banner" id="banner" class="form-control" required>
+                                        <input type="file" name="banner" id="banner" class="form-control" value="{{ old('banner',$post->banner??'') }} required">
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
@@ -73,6 +73,25 @@
                                     <div class="col-sm-12 col-md-7">
                                         <textarea class="summernote" name="body">{{ old('body', $post->body??'') }}</textarea>
                                     </div>
+                                </div>
+
+                                {{-- <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tags</label>
+                                    <div class="col-sm-12 col-md-7">
+                                      <input type="text" data-role="tagsinput" name="tags" class="form-control">
+                                    </div>
+                                </div> --}}
+
+                                <div class="form-group row mb-4"">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" id="status" class="form-control" required autofocus>
+                                            <option value="">Status</option>
+                                            @foreach($poststatuses as $st)
+                                            <option value="{{ $st->id }}" {{ old('status_', $post->is_publish??'')==$st->id?'selected':'' }}>{{ $st->status_post }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
