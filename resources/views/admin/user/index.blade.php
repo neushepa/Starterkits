@@ -58,6 +58,7 @@
                                 <td>
                                     <form method="POST" action="{{ route('user.destroy',$people->id) }}">
                                         <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Edit' href="{{ route('user.edit',$people->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                                        <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Role' href="{{ route('user.changerole',$people->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                         <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Reset Password' href="{{ route('user.resetpass', ['id' => $people->id]) }}"><i class="fas fa-key"></i></a>
                                             @csrf
                                             @method('DELETE')

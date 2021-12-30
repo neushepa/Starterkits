@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/', [FrontendController::class, 'showslider']);
 Route::get('/about', [FrontendController::class, 'showAbout']);
-Route::get('/gallery', FrontendController::class . '@showgallery')->name('gallery.show'); ;
+Route::get('/gallery', FrontendController::class . '@showgallery')->name('gallery.show');
 
 Route::get('/blog', BlogController::class . '@index')->name('blog.index');
 Route::get('/blog/{slug}', BlogController::class . '@show');
@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/update/{id}', [UserController::class, 'update'])->name('profile.update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
             Route::get('/resetpass/{id}', [UserController::class, 'resetpass'])->name('user.resetpass');
+            Route::get('/changerole/{id}', [UserController::class, 'changerole'])->name('user.changerole');
+            Route::put('/updaterole/{id}', [UserController::class, 'updaterole'])->name('user.updaterole');
         });
         Route::prefix('todo')->group(function () {
             Route::get('/', [TodoController::class, 'index'])->name('todo.index');

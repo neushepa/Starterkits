@@ -157,4 +157,24 @@ class UserController extends Controller
         $people->save();
         return redirect()->route('user.index')->withSuccess('Password Successfully');
     }
+
+    public function changerole($id)
+    {
+        $data = [
+            'title' => 'Edit Role',
+            'method' => 'PUT',
+            'route' => route('user.updaterole', $id),
+            'pro' => User::where('id', $id)->first(),
+        ];
+        return view('admin.user.changerole', $data);
+    }
+
+    public function updaterole(Request $request, $id)
+    {
+        $pro = User::find($id);
+        $pro->role = $request->role;
+        //dd($request);
+        $pro->save();
+        return redirect()->route('user.index', $id)->with('success', 'Role Updated');
+    }
 }
