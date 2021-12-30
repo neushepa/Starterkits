@@ -44,13 +44,16 @@ Route::get('/auth/{provider}/callback', 'Auth\SocialiteController@handleProvideC
 Route::get('/home', function () {
     if (Auth::user()->role == 'admin') {
         return redirect('/admin/dashboard');
+    } elseif (Auth::user()->role == 'member') {
+        return redirect('/member/dashboard');
     } else {
         return redirect('/');
     }
 })->name('home');
 
 // Start of the Admin Routes
-Route::middleware(['auth', 'admin'])->group(function () {
+
+Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/changePassword', [App\Http\Controllers\HomeController::class, 'showChangePasswordGet'])->name('changePasswordGet');
     Route::post('/changePassword', [App\Http\Controllers\HomeController::class, 'changePasswordPost'])->name('changePasswordPost');
@@ -114,5 +117,35 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/support', [AboutController::class, 'showSupport'])->name('about.support');
         });
     });
+
+    // End of the Member Routes
+
+    // Start of the Member Routes
+
+    Route::get('member/dashboard', [HomeController::class, 'index'])->name('member.dashboard');
+    Route::prefix('member')->group(function () {
+        Route::prefix('post')->group(function () {
+            Route::get('/', [PostController::class, 'index'])->name('post.index');
+            Route::get('/create', [PostController::class, 'create'])->name('post.create');
+            Route::post('/store', [PostController::class, 'store'])->name('post.store');
+            Route::get('/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+            Route::put('/update/{id}', [PostController::class, 'update'])->name('post.update');
+        });
+        Route::prefix('todo')->group(function () {
+            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
+            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
+            Route::get('/edit/{id}', [TodoController::class, 'edit'])->name('todo.edit');
+            Route::get('/show/{id}', [TodoController::class, 'show'])->name('todo.show');
+            Route::put('/update/{id}', [TodoController::class, 'update'])->name('todo.update');
+            Route::delete('/delete/{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
+            Route::get('/status/{id}', [TodoController::class, 'status'])->name('todo.status');
+        });
+
+        Route::prefix('about')->group(function () {
+            Route::get('/credit', [AboutController::class, 'showCredit'])->name('about.credit');
+            Route::get('/support', [AboutController::class, 'showSupport'])->name('about.support');
+        });
+    });
+    // End of the Member Routes
 });
-// End of the Admin Routes

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -16,6 +15,9 @@ class isMember
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if ($request->user()->role == 'member') {
+            return $next($request);
+        }
+        return back()->with('error', 'Opps, You\'re not Member');
     }
 }

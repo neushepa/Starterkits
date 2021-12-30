@@ -15,11 +15,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post=[
-            'title'=>'List Post',
-            'posts'=> Post::all(),
-            'route' => route('post.create'),
-        ];
+        if (auth()->user()->role == 'member') {
+            $post = [
+                'title'=>'List Post',
+                'posts'=> Post::where('user_id', auth()->user()->id)->get(),
+                'route' => route('post.create'),
+            ];
+        } else {
+            $post=[
+                'title'=>'List Post',
+                'posts'=> Post::all(),
+                'route' => route('post.create'),
+            ];
+        }
         return view('admin.post.index', $post);
     }
 

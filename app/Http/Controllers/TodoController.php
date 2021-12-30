@@ -16,7 +16,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        if ((auth()->user()->role == 'admin') && (auth()->user()->email == 'admin@test.com')) {
+        if ((auth()->user()->role == 'admin')) {
             $data = [
                 'title' => 'List Todo',
                 'todo'  => Todo::All(),

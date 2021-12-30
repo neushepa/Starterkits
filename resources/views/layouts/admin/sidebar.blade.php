@@ -16,11 +16,14 @@
                             <li class="dropdown active">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Article</span></a>
                             <ul class="dropdown-menu" style="display: none;">
+                                @if(Auth::user()->role == 'admin')
                                 <li class="active"><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
+                                @endif
                                 <li class="active"><a class="nav-link" href="{{ route('post.index') }}">Post</a></li>
                             </ul>
                             </li>
                     </li>
+                    @if(Auth::user()->role == 'admin')
                     <li>
                         <li class="dropdown active">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-desktop"></i> <span>Media</span></a>
@@ -42,6 +45,7 @@
                             </ul>
                             </li>
                     </li>
+                    @endif
                     <li><a class="nav-link" href="{{ route('about.credit')}}"><i class="fas fa-fire"></i> <span>Credits</span></a></li>
                 </ul>
         </aside>

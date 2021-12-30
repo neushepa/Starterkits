@@ -62,7 +62,9 @@
                                     <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Edit' href="{{ route('post.edit',$ps->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                         @csrf
                                         @method('DELETE')
+
                                         <button type="submit" class="btn btn-danger btn-action btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
+
                                     </form>
                                 </td>
                             </tr>

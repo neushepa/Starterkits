@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if ((auth()->user()->role == 'admin') && (auth()->user()->email == 'admin@test.com')) {
+        if ((auth()->user()->role == 'admin'))  {
             $data = [
                 'users'=>User::count(),
                 'category'=>Category::count(),

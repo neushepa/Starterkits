@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
                     'role' => 'admin',
                 ],
                 [
+                    'id_number' => '11411143',
+                    'name' => 'member',
+                    'email' => 'member@test.com',
+                    'password' => bcrypt('123456'),
+                    'role' => 'member',
+                ],
+                [
                     'id_number' => '11511211',
                     'name' => 'User',
                     'email' => 'user@test.com',

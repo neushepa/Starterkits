@@ -14,7 +14,7 @@ class AlterIsPublishToStringInPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('is_publish')->default('Pending')->change();
+            $table->string('is_publish')->default('2')->change();
         });
     }
 
