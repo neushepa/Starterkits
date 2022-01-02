@@ -180,4 +180,24 @@ class PostController extends Controller
         $post->save();
         return redirect()->route('post.index')->withSuccess('Post Status Update Successfully');
     }
+
+    public function showcat($id)
+    {
+        $data = [
+            'title' => 'Post Short By Categories',
+            'posts' => Post::where('category_id', $id)->paginate(5),
+        ];
+        //dd($data);
+        return view('frontend.category', $data);
+    }
+
+    public function showpost($id)
+    {
+        $data = [
+            'title' => 'Post Short By User',
+            'posts' => Post::where('user_id', $id)->paginate(5),
+        ];
+        //dd($data);
+        return view('frontend.category', $data);
+    }
 }

@@ -14,14 +14,14 @@
         <ul>
           <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/user/{{ $post->user_id }}">{{ $post->user->name }}</a></li>
           <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ $post->created_at->diffForHumans() }}</time></a></li>
-          <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{ $post->comments->count() }} Comments</a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog/{{ $post->slug }}#comments">{{ $post->comments->count() }} Comments</a></li>
         </ul>
       </div>
 
       <div class="entry-content">
         <p>{!! $post->excerpt !!}</p>
         <div class="read-more">
-            <a href="/blog/{{ $post->slug }}">Read More</a>
+            <a href="/cat/{{ $post->slug }}">Read More</a>
         </div>
       </div>
 

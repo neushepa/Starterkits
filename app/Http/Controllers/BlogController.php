@@ -63,14 +63,14 @@ class BlogController extends Controller
         return view('frontend.post', $data);
     }
 
-    public function showcat($id)
-    {
-        $data = [
-            'title' => 'Detail Post',
-            'posts' => Post::select('*')->where('category_id', '=', $id)->get(),
-        ];
-        return view('frontend.blog', $data);
-    }
+    // public function showcat($id)
+    // {
+    //     $data = [
+    //         'title' => 'Detail Post',
+    //         'posts' => Post::select('*')->where('category_id', '=', $id)->get(),
+    //     ];
+    //     return view('frontend.blog', $data);
+    // }
 
     /**
      * Show the form for editing the specified resource.

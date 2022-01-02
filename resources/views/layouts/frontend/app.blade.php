@@ -93,7 +93,7 @@
               </div><!-- End sidebar search formn-->
 
               <!-- start sidebar categories-->
-              {{-- <x-category-post /> --}}
+              <x-category-post />
 
               <!-- End sidebar categories-->
 
@@ -102,7 +102,7 @@
               <!-- End sidebar recent posts-->
 
               <!-- Start sidebar tags-->
-              @include('layouts.frontend.tag')
+              {{-- @include('layouts.frontend.tag') --}}
               <!-- End sidebar tags-->
 
             </div><!-- End sidebar -->

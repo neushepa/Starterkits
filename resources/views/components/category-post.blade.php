@@ -3,7 +3,7 @@
                 <ul>
                 @foreach ($categories as $category)
                 <li>
-                    <a href="/blog/{{ $category->id }}">{{ $category->category_name }} <span>{{ $category->post->count() }}</span></a>
+                    <a href="/cat/{{ $category->id }}">{{ $category->category_name }} <span>({{ $category->post->count() }})</span></a>
                 </li>
                 @endforeach
                 </ul>

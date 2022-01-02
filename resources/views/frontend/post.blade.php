@@ -12,9 +12,9 @@
       </h2>
       <div class="entry-meta">
         <ul>
-          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ $post->user->name }}</a></li>
-          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ $post->created_at->diffForHumans() }}</time></a></li>
-          <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">{{ $post->comments->count() }} Comments</a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/user/{{ $post->user_id }}">{{ $post->user->name }}</a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ $post->created_at->diffForHumans() }}</time></a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog/{{ $post->slug }}#comments">{{ $post->comments->count() }} Comments</a></li>
         </ul>
       </div>
 
@@ -24,15 +24,15 @@
       <div class="entry-footer">
         <i class="bi bi-folder"></i>
         <ul class="cats">
-          <li><a href="#">Business</a></li>
+          <li><a href="/cat/{{ $post->category_id }}">{{ $post->category->category_name }}</a></li>
         </ul>
 
-        <i class="bi bi-tags"></i>
+        {{-- <i class="bi bi-tags"></i>
         <ul class="tags">
           <li><a href="#">Creative</a></li>
           <li><a href="#">Tips</a></li>
           <li><a href="#">Marketing</a></li>
-        </ul>
+        </ul> --}}
       </div>
     </article>
     <div class="blog-author d-flex align-items-center">
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class="blog-comments">
+      <div class="blog-comments" id="comments">
         @comments([
             'model' => $post,
             'approved' => true

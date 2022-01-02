@@ -33,7 +33,8 @@ Route::get('/gallery', FrontendController::class . '@showgallery')->name('galler
 Route::get('/blog', BlogController::class . '@index')->name('blog.index');
 Route::get('/blog/{slug}', BlogController::class . '@show');
 Route::get('/blog/{id}', BlogController::class . '@showcat');
-//Route::get('/blog/{id}', [CategoryController::class, 'show']);
+Route::get('/cat/{id}', [PostController::class, 'showcat']);
+Route::get('/user/{id}', [PostController::class, 'showpost']);
 
 Route::get('/profile/show/{id}', [UserController::class, 'show'])->name('profile.show');
 

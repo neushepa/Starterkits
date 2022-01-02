@@ -8,8 +8,8 @@
               <a href="{{ $route }}" class="btn btn-primary">Add New</a>
             </div>
             <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">User</a></div>
+              <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></div>
               <div class="breadcrumb-item">All Users</div>
             </div>
           </div>
@@ -40,7 +40,7 @@
                                 <th>Email</th>
                                 <th>Created</th>
                                 <th>Updated</th>
-                                <th>Role</th>
+                                {{-- <th>Role</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -54,12 +54,12 @@
                                 <td>{{ $people->email }}</td>
                                 <td>{{ $people->created_at }}</td>
                                 <td>{{ $people->updated_at }}</td>
-                                <td>{{ $people->role }}</td>
+                                {{-- <td>{{ $people->role }}</td> --}}
                                 <td>
                                     <form method="POST" action="{{ route('user.destroy',$people->id) }}">
                                         <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Edit' href="{{ route('user.edit',$people->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Role' href="{{ route('user.changerole',$people->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="btn btn btn-primary btn-flat" data-toggle="tooltip" title='Reset Password' href="{{ route('user.resetpass', ['id' => $people->id]) }}"><i class="fas fa-key"></i></a>
+                                        <a class="btn btn btn-success btn-flat" data-toggle="tooltip" title='Role' href="{{ route('user.changerole',$people->id) }}"><i class="fas fa-user"></i></a>
+                                        <a class="btn btn btn-warning btn-flat" data-toggle="tooltip" title='Reset Password' href="{{ route('user.resetpass', ['id' => $people->id]) }}"><i class="fas fa-key"></i></a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
