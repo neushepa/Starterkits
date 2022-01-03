@@ -23,6 +23,21 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="card card-statistic-1">
+                  <div class="card-icon bg-primary">
+                    <i class="far fa-comment"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4>Comments</h4>
+                    </div>
+                    <div class="card-body">
+                      {{ $comments }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-danger">
                   <i class="far fa-newspaper"></i>

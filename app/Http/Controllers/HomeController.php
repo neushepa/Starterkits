@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Todo;
 use App\Models\User;
@@ -28,11 +29,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if ((auth()->user()->role == 'admin'))  {
+        if ((auth()->user()->role == 'admin')) {
             $data = [
                 'users'=>User::count(),
                 'category'=>Category::count(),
                 'article'=>Post::count(),
+                'comments'=>Comment::count(),
                 'todos'  => Todo::All(),
             ];
         } else {
@@ -40,6 +42,7 @@ class HomeController extends Controller
                 'users'=>User::count(),
                 'category'=>Category::count(),
                 'article'=>Post::count(),
+                'comments'=>Comment::count(),
                 'todos'  => Todo::where('assigned_to', auth()->user()->id)->get(),
             ];
         }

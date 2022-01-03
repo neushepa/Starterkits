@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -126,6 +127,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('about')->group(function () {
             Route::get('/credit', [AboutController::class, 'showCredit'])->name('about.credit');
             Route::get('/support', [AboutController::class, 'showSupport'])->name('about.support');
+        });
+
+        Route::prefix('settings')->group(function () {
+            Route::get('/', [SettingController::class, 'index'])->name('setting.index');
         });
     });
 
