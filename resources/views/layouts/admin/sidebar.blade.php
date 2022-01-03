@@ -20,6 +20,7 @@
                                 <li class="active"><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
                                 @endif
                                 <li class="active"><a class="nav-link" href="{{ route('post.index') }}">Post</a></li>
+                                <li class="active"><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
                             </ul>
                             </li>
                     </li>

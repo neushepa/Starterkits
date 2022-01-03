@@ -3,6 +3,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
@@ -67,6 +68,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/update/{id}', [PostController::class, 'update'])->name('post.update');
             Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
             Route::get('/status/{id}', [PostController::class, 'status'])->name('post.status');
+        });
+        Route::prefix('comment')->group(function () {
+            Route::get('/', [CommentsController::class, 'index'])->name('comments.index');
+            Route::get('/edit/{id}', [CommentsController::class, 'edit'])->name('comments.edit');
+            Route::put('/update/{id}', [CommentsController::class, 'update'])->name('comments.update');
+            Route::delete('/delete/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+            Route::get('/status/{id}', [CommentsController::class, 'status'])->name('comment.status');
         });
         Route::prefix('category')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('category.index');

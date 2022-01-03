@@ -21,7 +21,7 @@
       <div class="entry-content">
         <p>{!! $post->excerpt !!}</p>
         <div class="read-more">
-            <a href="/cat/{{ $post->slug }}">Read More</a>
+            <a href="/blog/{{ $post->slug }}">Read More</a>
         </div>
       </div>
 
