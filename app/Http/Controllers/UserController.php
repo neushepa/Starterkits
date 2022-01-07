@@ -69,7 +69,7 @@ class UserController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Edit Profile',
+            'title' => 'Show Profile',
             'method' => 'PUT',
             'route' => route('profile.update', $id),
             'pro' => User::where('id', $id)->first(),

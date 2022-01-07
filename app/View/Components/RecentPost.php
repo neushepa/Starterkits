@@ -14,7 +14,7 @@ class RecentPost extends Component
 
     public function __construct()
     {
-        $this->recent_posts = \App\Models\Post::orderBy('created_at', 'desc')->take(3)->get();
+        $this->recent_posts = \App\Models\Post::where('post_type', '=', 'blog')->orderBy('created_at', 'desc')->where('category_id', '!=', '4')->where('is_publish', '=', '1')->take(3)->get();
     }
 
     /**

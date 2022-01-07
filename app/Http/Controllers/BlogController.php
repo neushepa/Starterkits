@@ -16,8 +16,10 @@ class BlogController extends Controller
     {
         $data = [
             'title' => 'Blog List',
-            'posts' => Post::orderBy('created_at', 'desc')->paginate(5),
-            'categories' => Category::all()
+            // 'posts' => Post::orderBy('created_at', 'desc')->paginate(5),
+            'posts' => Post::Where('post_type', '=', 'Blog')->Where('is_publish', '=', '1')->orderBy('created_at', 'desc')->paginate(5),
+            'categories'=> Category::where('category_name', '!=', 'Features')->where('category_name', '!=', 'Service')->orderBy('created_at', 'desc')
+            // where('category_name', '!=', 'Features')->where('category_name', '!=', 'Service')->get();
         ];
         if ($request->has('q')) {
             $data['posts'] = Post::where('title', 'like', '%'.$request->q.'%')->orderBy('created_at', 'desc')->paginate(5);

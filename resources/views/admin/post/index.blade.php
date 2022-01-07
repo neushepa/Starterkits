@@ -37,6 +37,7 @@
                                 <th>#</th>
                                 <th>Title</th>
                                 {{-- <th>Slug</th> --}}
+                                <th>Type</th>
                                 <th>Category</th>
                                 <th>Date</th>
                                 <th>Created By</th>
@@ -53,6 +54,7 @@
                                 <td>{{ $i }}</td>
                                 <td>{{ $ps->title }}</td>
                                 {{-- <td>{{ $ps->slug }}</td> --}}
+                                <td>{{ $ps->post_type }}</td>
                                 <td>{{ $ps->category->category_name }}</td>
                                 <td>{{ $ps->created_at }}</td>
                                 <td>{{ $ps->user->name }}</td>

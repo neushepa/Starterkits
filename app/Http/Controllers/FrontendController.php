@@ -25,7 +25,8 @@ class FrontendController extends Controller
     {
         $data = [
             'title' => 'Post Detail',
-            'posts' => Post::all(),
+            'posts' => Post::where('post_type', '=', 'Blog')->where('is_publish', '=', '1')->get(),
+            'services' => Post::where('post_type', '=', 'Page')->where('category_id', '=', '4')->where('is_publish', '=', '1')->get(),
         ];
         return view('frontend.home', $data);
     }
@@ -34,4 +35,13 @@ class FrontendController extends Controller
     {
         return view('frontend.about');
     }
+
+    // public function showservices()
+    // {
+    //     $data = [
+    //         'title' => 'Services Content',
+    //         'services' => Post::where('post_type', '=', 'Page')->get(),
+    //     ];
+    //     return view('frontend.service', $data);
+    // }
 }

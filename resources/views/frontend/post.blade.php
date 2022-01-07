@@ -174,6 +174,7 @@
         </div> --}}
 
       </div>
+
     <!-- End blog entry -->
   </div>
 @endsection

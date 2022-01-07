@@ -28,6 +28,8 @@
     </article>
     @endforeach
     <!-- End blog entry -->
-  </div>
+    {{ $posts->links() }}
+</div>
+
 
 @endsection

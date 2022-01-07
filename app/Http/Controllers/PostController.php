@@ -79,6 +79,7 @@ class PostController extends Controller
         $post->user_id = $user_id;
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->post_type = $request->post_type;
         $post->category_id = $request->category;
         $post->excerpt = $request->excerpt;
         $post->body = $request->body;
@@ -134,6 +135,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
+
         ]);
 
         $post = Post::find($id);
@@ -150,6 +152,7 @@ class PostController extends Controller
         }
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->post_type = $request->post_type;
         $post->category_id = $request->category;
         $post->excerpt = $request->excerpt;
         $post->body = $request->body;
@@ -178,14 +181,14 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->is_publish = $post->is_publish == 1 ? 2 : 1;
         $post->save();
-        return redirect()->route('post.index')->withSuccess('Post Status Update Successfully');
+        return redirect()->route('post.index')->withSuccess('Status Update Successfully');
     }
 
     public function showcat($id)
     {
         $data = [
             'title' => 'Post Short By Categories',
-            'posts' => Post::where('category_id', $id)->paginate(5),
+            'posts' => Post::where('category_id', $id)->where('post_type', '=', 'Blog')->paginate(5),
         ];
         //dd($data);
         return view('frontend.category', $data);
@@ -195,9 +198,9 @@ class PostController extends Controller
     {
         $data = [
             'title' => 'Post Short By User',
-            'posts' => Post::where('user_id', $id)->paginate(5),
+            'posts' => Post::where('user_id', $id)->where('post_type', '=', 'Blog')->paginate(5),
         ];
-        //dd($data);
+        // dd($data);
         return view('frontend.category', $data);
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.admin.app')
 
 @section ('content')
+
 <div class="main-content" style="min-height: 524px;">
     <section class="section">
         <div class="section-header">
@@ -51,6 +52,21 @@
                                         <input type="text" name="slug" class="form-control" value="{{ old('slug',$post->slug??'') }}">
                                     </div>
                                 </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Post Type</label>
+                                    <div class="col-sm-12 col-md-7">
+                                    <select name="post_type" id="post_type" class="form-control">
+                                        <option value="{{ old('post_type',$post->post_type??'') }}">{{ old('post_type',$post->post_type??'') }}</option>
+                                        {{-- <option value="{{ str_contains($url, 'edit') ? $post->post_type : $post->post_type }}">{{ $post->post_type }}</option> --}}
+                                        {{-- <option value="{{ str_contains($url, 'edit') ? $pro->religion : $pro->religion }}">{{ $pro->religion }}</option> --}}
+
+                                        <option>Blog</option>
+                                        <option>Page</option>
+                                    </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
