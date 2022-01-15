@@ -25,8 +25,8 @@ class FrontendController extends Controller
     {
         $data = [
             'title' => 'Post Detail',
-            'posts' => Post::where('post_type', '=', 'Blog')->where('is_publish', '=', '1')->get(),
-            'services' => Post::where('post_type', '=', 'Page')->where('category_id', '=', '4')->where('is_publish', '=', '1')->get(),
+            'posts' => Post::where('post_type', '=', 'Blog')->where('category_id', '=', '1')->where('is_publish', '=', '1')->orderBy('created_at', 'desc')->limit(3)->get(),
+            'services' => Post::where('post_type', '=', 'Page')->where('category_id', '=', '2')->where('is_publish', '=', '1')->get(),
         ];
         return view('frontend.home', $data);
     }

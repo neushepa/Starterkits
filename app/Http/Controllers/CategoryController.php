@@ -16,7 +16,8 @@ class CategoryController extends Controller
     {
         $category=[
             'title'=>'List Category',
-            'categories'=> Category::all(),
+            'categories'=> Category::Where('category_name', '<>', 'Services')->Where('category_name', '<>', 'Headline')->Where('category_name', '<>', 'Features')->get(),
+
             'route' => route('category.create'),
         ];
         return view('admin.category.index', $category);
@@ -73,7 +74,7 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Category Post',
             'category' => Category::where('category_id', $id)->first(),
-            'posts' => Post::where('category_id', $id)->paginate(5),
+            'posts' => Post::where('category_id', $id)->orderBy('created_at', 'desc')->paginate(5),
         ];
         return view('frontend.blog', $data);
     }

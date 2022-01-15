@@ -18,13 +18,13 @@ class PostController extends Controller
         if (auth()->user()->role == 'member') {
             $post = [
                 'title'=>'List Post',
-                'posts'=> Post::where('user_id', auth()->user()->id)->get(),
+                'posts'=> Post::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get(),
                 'route' => route('post.create'),
             ];
         } else {
             $post=[
                 'title'=>'List Post',
-                'posts'=> Post::all(),
+                'posts'=> Post::orderBy('created_at', 'desc')->get(),
                 'route' => route('post.create'),
             ];
         }
@@ -135,7 +135,6 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-
         ]);
 
         $post = Post::find($id);
@@ -188,7 +187,7 @@ class PostController extends Controller
     {
         $data = [
             'title' => 'Post Short By Categories',
-            'posts' => Post::where('category_id', $id)->where('post_type', '=', 'Blog')->paginate(5),
+            'posts' => Post::where('category_id', $id)->where('post_type', '=', 'Blog')->orderBy('created_at', 'desc')->paginate(5),
         ];
         //dd($data);
         return view('frontend.category', $data);

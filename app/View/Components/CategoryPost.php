@@ -14,7 +14,7 @@ class CategoryPost extends Component
 
     public function __construct()
     {
-        $this->categories = \App\Models\Category::where('category_name', '!=', 'Features')->get();
+        $this->categories = \App\Models\Category::where('category_name', '!=', 'Features')->where('category_name', '!=', 'Services')->get();
     }
 
     /**

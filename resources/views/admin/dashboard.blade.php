@@ -81,7 +81,7 @@
                 <ul class="list-unstyled list-unstyled-border">
                   <li class="media">
                     {{-- <img class="mr-3 rounded-circle" width="50" src="../{{ $td->member->photo }}" alt="avatar"> --}}
-                    <img class="mr-3 rounded-circle" width="50" src="../{{ (is_null($td->member->photo)) ? 'assets/admin/img/avatar/avatar-1.png' : ($td->member->photo) }}" alt="avatar">
+                    <img class="mr-3 rounded-circle" width="50" src="../{{ (empty($td->member->photo)) ? 'assets/admin/img/avatar/avatar-1.png' : ($td->member->photo) }}" alt="avatar">
 
                     <div class="media-body">
                       <div class="float-right"><a href="{{ route('todo.status', ['id' => $td->id]) }}">{!! $td->status_text !!}</div>

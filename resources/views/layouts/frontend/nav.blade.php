@@ -7,7 +7,7 @@
       <li class="nav-item">
         @auth
         <li class="nav-item {{ request()->is('gallery')?'active':'' }}">
-            <a class="nav-link" href="admin/dashboard">Dashboard</a>
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
         </li>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
             <i class="fas fa-sign-out-alt"></i> Logout

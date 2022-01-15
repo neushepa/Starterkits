@@ -33,10 +33,12 @@
           <li><a href="#">Tips</a></li>
           <li><a href="#">Marketing</a></li>
         </ul> --}}
+
       </div>
     </article>
     <div class="blog-author d-flex align-items-center">
-        <img src="../{{ $post->user->photo }}" class="rounded-circle float-left" alt="">
+        <img src="../{{ (empty($post->user->photo)) ? 'assets/admin/img/avatar/avatar-1.png' : ($post->user->photo) }}" alt="avatar">
+
         <div>
           <h4>{{ $post->user->name }}</h4>
           <div class="social-links">

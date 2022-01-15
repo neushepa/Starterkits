@@ -163,11 +163,6 @@
              $('#start_date').val(data.data.start_date);
              $('#end_date').val(data.data.end_date);
              $('#updated_at').val(data.data.updated_at);
-
-
-
-
-
          })
     });
 

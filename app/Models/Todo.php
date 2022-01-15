@@ -14,6 +14,11 @@ class Todo extends Model
         return $this->belongsTo(User::class, 'assigned_to');
     }
 
+    public function xmember()
+    {
+        return $this->belongsTo(User::class, 'name');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
