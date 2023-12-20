@@ -11,11 +11,11 @@
 
 A web-based application with the Laravel 8 Framework that can be integrated with various android/ios mobile platforms. Starter Kit aims to help companies, campuses, schools, students and the general public in building applications more effectively and efficiently.
 
->> Basic Blog CRUD
->> Gallery
->> Todo List
->> User Managemet
->> Open Source
+- Basic Blog CRUD
+- Gallery
+- Todo List
+- User Managemet
+- Open Source
 
 Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.
 
